@@ -14,7 +14,7 @@ import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
-import { useTranslations, type Lang } from "@/i18n/ui";
+import { useTranslations, getLangFromUrl } from "@/i18n/ui";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -24,7 +24,7 @@ type Props = {
 
 const { post, posts, lang: propLang } = Astro.props;
 // Extract lang from post ID if not provided
-const lang = propLang || (post.id.startsWith("zh/") ? "zh" : "en") as Lang;
+const lang = propLang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const {

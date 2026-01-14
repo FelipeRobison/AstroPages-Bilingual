@@ -19,6 +19,8 @@ type Props = {
   lang?: string;
 };
 
+import { getLangFromUrl } from "@/i18n/ui";
+
 const {
   title = SITE.title,
   author = SITE.author,
@@ -29,7 +31,7 @@ const {
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
-  lang = (Astro.params.lang as string) || "en",
+  lang = getLangFromUrl(Astro.url),
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.url);
