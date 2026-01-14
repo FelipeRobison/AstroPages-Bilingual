@@ -10,7 +10,7 @@ type Props = {
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog", ({ data }) => !data.draft);
-  const languages = ["zh", "en"];
+  const languages = ["en"];
 
   return languages.flatMap(lang => {
     const langPosts = allPosts.filter(({ id }) => id.startsWith(`${lang}/`));

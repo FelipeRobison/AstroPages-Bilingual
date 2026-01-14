@@ -5,15 +5,10 @@ import getSortedPosts from "@/utils/getSortedPosts";
 import { SITE } from "@/config";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  
-  // Get all unique languages from post IDs
-  // Assuming post ID format is "lang/slug"
-  const languages = [...new Set(posts.map(post => post.id.split('/')[0]))];
-  
-  return languages.map(lang => ({
-    params: { lang },
-  }));
+  // Only generate English RSS here - Chinese RSS is at root /rss.xml
+  return [
+    { params: { lang: "en" } },
+  ];
 }
 
 export async function GET({ params }: { params: { lang: string } }) {

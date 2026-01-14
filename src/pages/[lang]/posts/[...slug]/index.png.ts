@@ -16,9 +16,12 @@ export async function getStaticPaths() {
     p.filter(({ data }) => !data.draft && !data.ogImage)
   );
 
-  return posts.map(post => ({
+  // Only generate English OG images here - Chinese OG images are at root /posts/
+  const englishPosts = posts.filter(post => post.id.startsWith("en/"));
+
+  return englishPosts.map(post => ({
     params: {
-      lang: post.id.split("/")[0],
+      lang: "en",
       slug: getPath(post.id, post.filePath, false),
     },
     props: post,

@@ -14,7 +14,7 @@ import { useTranslations, type Lang } from "@/i18n/ui";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = await getCollection("blog");
-  const languages = ["zh", "en"];
+  const languages = ["en"];
 
   return languages.flatMap(lang => {
     const langPosts = allPosts.filter(({ id }) => id.startsWith(`${lang}/`));

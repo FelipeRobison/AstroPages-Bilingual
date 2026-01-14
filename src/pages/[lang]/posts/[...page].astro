@@ -15,7 +15,7 @@ export const getStaticPaths = (async ({ paginate }) => {
   const allPosts = await getCollection("blog", ({ data }) => !data.draft);
   
   // Generate paths for each language
-  const languages = ["zh", "en"];
+  const languages = ["en"];
   return languages.flatMap(lang => {
     const langPosts = allPosts.filter(({ id }) => id.startsWith(`${lang}/`));
     const sortedPosts = getSortedPosts(langPosts);
