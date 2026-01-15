@@ -7,7 +7,11 @@ description: >-
 draft: false
 featured: true
 tags:
-  - HuggingFace, Docker, Omnibox, Cloudflare, 教程
+  - HuggingFace
+  - Docker
+  - Omnibox
+  - Cloudflare
+  - 教程
 ---
 👋 今天我们要折腾一个非常有意思的项目——**Omnibox**。如果你是 NAS 玩家或者影视爱好者，可能听说过这个聚合神器。虽然 Docker 部署在本地很简单，但如果想在云端随时随地访问，通常需要一台 VPS。
 
