@@ -50,13 +50,13 @@ Hugging Face 不仅仅是 AI 界的 GitHub，它的 **Spaces** 功能允许我�
 我们需要一个“魔改版” Dockerfile。在 Space 的 **Files** 页面新建 `Dockerfile`，粘贴以下内容：
 
 ```dockerfile
-# 1. 使用官方镜像作为底包，省去自己编译的麻烦 [web:1]
+# 1. 使用官方镜像作为底包，省去自己编译的麻烦
 FROM lampon/omnibox:latest
 
 # 2. 切换到 Root 进行环境配置
 USER root
 
-# 安装 socat，这是我们的"端口转发神器" [web:36][web:42]
+# 安装 socat，这是我们的"端口转发神器"
 RUN apk add --no-cache socat
 
 # 3. 配置数据持久化
@@ -71,7 +71,7 @@ RUN mkdir -p /data/omnibox && \
 # 4. 编写启动脚本 (Start Script)
 # 这里解决了两个大坑：
 # A. 用 socat 把 HF 的 7860 流量转发给 Omnibox 的 7023
-# B. 修正启动命令为 ./main (而不是默认的 /app/omnibox) [web:61][web:67]
+# B. 修正启动命令为 ./main (而不是默认的 /app/omnibox)
 RUN echo '#!/bin/sh' > /start.sh && \
     echo 'echo "Starting port forwarding 7860 -> 7023..."' >> /start.sh && \
     echo 'socat tcp-listen:7860,fork,reuseaddr tcp-connect:localhost:7023 &' >> /start.sh && \
@@ -134,7 +134,7 @@ Deployed via Docker with socat port forwarding.
 
 ## 🌐 第四步：自定义域名（白嫖 Cloudflare）
 
-默认的域名 `huggingface.co/spaces/xxx` 太长太丑，而且容易被某些网络环境拦截。我们要用 **Cloudflare Workers** 来做一个免费的反向代理 。[1][2]
+默认的域名 `huggingface.co/spaces/xxx` 太长太丑，而且容易被某些网络环境拦截。我们要用 **Cloudflare Workers** 来做一个免费的反向代理 。
 
 ### 1. 获取 Direct URL
 
@@ -178,7 +178,7 @@ export default {
 1. 在 Worker 的设置页面，找到 **Triggers** -> **Custom Domains**。
 1. 点击 **Add Custom Domain**。
 1. 输入你的子域名（例如 `movie.yourdomain.com`）。
-1. Cloudflare 会自动处理 DNS 和 SSL 证书 。[3]
+1. Cloudflare 会自动处理 DNS 和 SSL 证书 。
 
 等待几分钟，访问你的自定义域名，你应该就能看到熟悉的 Omnibox 登录界面了！
 
@@ -186,7 +186,7 @@ export default {
 
 ## ⚠️ 避坑指南（Pro Tips）
 
-1. **Runtime Error 127**：如果你遇到 `exec: /app/omnibox: not found` 错误，说明你还在用旧的启动命令。请务必检查 Dockerfile 里是否改成了 `cd /app && exec ./main` 。[4]
+1. **Runtime Error 127**：如果你遇到 `exec: /app/omnibox: not found` 错误，说明你还在用旧的启动命令。请务必检查 Dockerfile 里是否改成了 `cd /app && exec ./main` 。
 1. **休眠问题**：免费的 HF Space 会在 48 小时无操作后休眠。可以通过 Webhook 或者定期访问你的自定义域名来唤醒它。
 1. **Socat 重要性**：不要尝试直接改 Omnibox 的配置文件端口，Docker 内部转发是最稳的方案，不侵入原应用逻辑。
 
