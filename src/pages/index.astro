@@ -30,35 +30,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 <Header lang={lang} />
   <main id="main-content" data-layout="index" class="app-layout">
     <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        {t("hero.greeting")}
-      </h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
-
       <p>
         {t("hero.description")}
-      </p>
-      <p class="mt-2">
-        {t("hero.cta")}
-        <LinkButton
-          class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="https://github.com/t0saki/AstroPages-Bilingual#readme"
-        >
-          README
-        </LinkButton>
       </p>
       {
         // only display if at least one social link is enabled
