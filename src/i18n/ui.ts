@@ -37,7 +37,7 @@ export const ui = {
     
     // Home page hero
     "hero.greeting": "你好",
-    "hero.description": "这是一个简洁、响应式、无障碍且对 SEO 友好的 Astro 博客主题。支持明暗模式切换，可自定义配色方案。",
+    "hero.description": "这是一个分享自己使用互联网服务的博客。",
     "hero.cta": "阅读博客文章或查看",
     "hero.socialLinks": "社交链接：",
     
