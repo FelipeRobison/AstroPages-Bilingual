@@ -37,7 +37,7 @@ export const ui = {
     
     // Home page hero
     "hero.greeting": "你好",
-    "hero.description": "这是一个分享自己使用互联网服务的博客。",
+    "hero.description": "这是一个分享使用（白嫖）互联网服务的博客。",
     "hero.cta": "阅读博客文章或查看",
     "hero.socialLinks": "社交链接：",
     
