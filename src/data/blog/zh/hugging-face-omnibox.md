@@ -1,6 +1,9 @@
 ---
 title: 把你的影视聚合中心搬上云端：在 Hugging Face 免费部署 Omnibox 的终极指南
 pubDatetime: 2026-01-15
+description: >-
+  别再买 VPS 了！教你用 Hugging Face Spaces + Docker 免费部署 Omnibox 影视聚合中心，配合 Cloudflare
+  实现自定义域名，从零搭建专属云端影音库。
 draft: false
 featured: true
 tags:
